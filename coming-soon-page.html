@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MoRUS Archive | Coming Soon</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <a class="site-title" href="index.html">MoRUS Archive</a>
+
+  <ul class="nav-row nav-top">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#collections">Collections</a></li>
+    <li><a href="coming-soon-page.html">Archive Appraisal</a></li>
+    <li><a href="https://docs.google.com/spreadsheets/d/1Jpmjcz8m0Sp8Bsl39hAJ14mIFGcb2p1kIIF2nudfaZA/edit?usp=sharing" target="_blank">MoRUS Thesaurus</a></li>
+    <li><a href="https://morusnyc.org/support-us/donate/" target="_blank">$ Donate $</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+
+  <ul class="nav-row nav-bottom">
+    <li><a href="morus-oral-history.html">Oral History Initiative</a></li>
+    <li><a href="morus-archive-events.html">Events</a></li>
+    <li><a href="morus-conferences.html">Conference Appearances</a></li>
+    <li><a href="https://morusnyc.org" target="_blank">Museum Homepage</a></li>
+  </ul>
+</nav>
+
+<section class="coming-soon">
+
+  <h1>COMING SOON</h1>
+
+  <p>
+    This section of the MoRUS Archive is currently under construction.
+  </p>
+
+  <p>
+   Don't be weird and be a little more patient.
+  </p>
+
+  <div class="coming-soon-divider"></div>
+
+  <p class="coming-soon-small">
+    Check back regularly for updates.
+  </p>
+
+</section>
+
+<a href="morus-archive-zines.html" id="floating-zine">
+  <img src="images/zine-icon.jpg" alt="Hidden Zine Collection">
+</a>
+
+<footer>
+  <span>The Museum of Reclaimed Urban Space Archive</span>
+  <span>All rights reserved</span>
+</footer>
+
+<script>
+const floatingZine = document.getElementById("floating-zine");
+
+function showFloatingZine() {
+  floatingZine.style.display = "block";
+
+  setTimeout(() => {
+    floatingZine.style.display = "none";
+  }, 45000);
+}
+
+setTimeout(showFloatingZine, 5000);
+setInterval(showFloatingZine, 75000);
+</script>
+
+</body>
+</html>

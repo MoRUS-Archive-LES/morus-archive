@@ -1,0 +1,103 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MoRUS Archive | Conference Appearances</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<nav>
+  <a class="site-title" href="index.html">MoRUS Archive</a>
+
+  <ul class="nav-row nav-top">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#collections">Collections</a></li>
+    <li><a href="coming-soon-page.html">Archive Appraisal</a></li>
+    <li><a href="https://docs.google.com/spreadsheets/d/1Jpmjcz8m0Sp8Bsl39hAJ14mIFGcb2p1kIIF2nudfaZA/edit?usp=sharing" target="_blank">MoRUS Thesaurus</a></li>
+    <li><a href="https://morusnyc.org/support-us/donate/" target="_blank">$ Donate $</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+
+  <ul class="nav-row nav-bottom">
+    <li><a href="morus-oral-history.html">Oral History Initiative</a></li>
+    <li><a href="morus-archive-events.html">Events</a></li>
+    <li><a href="morus-conferences.html">Conference Appearances</a></li>
+    <li><a href="https://morusnyc.org" target="_blank">Museum Homepage</a></li>
+  </ul>
+</nav>
+ 
+<section class="zines-header">
+  <h1>MoRUS Archive Published Zines</h1>
+</section>
+
+<section class="zine-library">
+
+  <article class="zine-entry">
+    <h2>MoRUS Archive Coloring Book made by packing peanuts </h2>
+
+    <div class="flipbook-container">
+      <iframe
+        src="https://online.fliphtml5.com/jlyvr/Untitled-design/"
+        title="MoRUS Archive Coloring Book made by packing peanuts"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </article>
+
+</section>
+ 
+ 
+ <!-- FLOATING ZINE BUTTON -->
+  <a href="dont-be-stupid.html" id="floating-zine">
+  <img src="images/zine-icon.jpg" alt="Hidden Zine Collection">
+</a>
+
+<script>
+    function openLightbox(el) {
+      const img = el.querySelector('img');
+      const title = el.querySelector('.title').textContent;
+      const meta = el.querySelector('.meta').textContent;
+      document.getElementById('lightbox-img').src = img.src.replace('w=800', 'w=1400');
+      document.getElementById('lightbox-img').alt = img.alt;
+      document.getElementById('lightbox-caption').textContent = title + ' — ' + meta;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox(e) {
+      if (e && e.target !== e.currentTarget && !e.target.classList.contains('lightbox-close')) return;
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+const floatingZine = document.getElementById("floating-zine");
+
+function showFloatingZine() {
+  floatingZine.style.display = "block";
+
+  setTimeout(() => {
+    floatingZine.style.display = "none";
+  }, 45000); // stays visible for 45 seconds
+}
+
+// first appearance
+setTimeout(showFloatingZine, 5000);
+
+// repeat every 75 seconds total cycle (45 on + 30 off)
+setInterval(showFloatingZine, 75000);
+  </script>
+
+
+<footer>
+  <span>The Museum of Reclaimed Urban Space Archive</span>
+  <span>All rights reserved</span>
+</footer>
+
+</body>
+</html>
