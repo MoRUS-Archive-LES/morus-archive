@@ -1,0 +1,1021 @@
+@font-face {
+  font-family: 'SpecialElite';
+  src: url('SpecialElite-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --ink:   #f40000;
+  --faded: #ff0000;
+  --paper: #000000;
+  --rule:  #000000;
+}
+
+html, body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'SpecialElite', 'Courier New', monospace;
+  font-size: 18px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 22px 36px;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+}
+
+nav .site-title {
+  font-size: 25px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 32px;
+}
+
+nav ul a {
+  font-size: 15px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--faded);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+nav ul a:hover { color: var(--ink); }
+
+/* ── HERO ── */
+.hero {
+  margin-top: 65px;
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 65px);
+  overflow: hidden;
+}
+
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  filter: grayscale(18%) contrast(1.04);
+}
+
+.hero-caption {
+  position: absolute;
+  bottom: 28px;
+  left: 36px;
+  font-size: 15px;
+  color: #f5f2ed;
+  letter-spacing: 0.05em;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.45);
+}
+
+.hero-caption em { font-style: italic; }
+
+/* ── GRID ── */
+.section-label {
+  padding: 52px 36px 18px;
+  font-size: 18px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--faded);
+  border-bottom: 1px solid var(--rule);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.grid-item {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: var(--paper);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.grid-item img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(20%) contrast(1.03);
+  transition: filter 0.4s, transform 0.5s;
+}
+
+.grid-item:hover img {
+  filter: grayscale(0%) contrast(1.05);
+  transform: scale(1.015);
+}
+
+.grid-item-caption {
+  padding: 14px 18px 18px;
+}
+
+.grid-item-caption .title {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.grid-item-caption .meta {
+  font-size: 13px;
+  color: var(--faded);
+  letter-spacing: 0.06em;
+}
+
+/* ── TEXT SECTION ── */
+.text-section {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 72px 36px 80px;
+}
+
+.text-section h2 {
+  font-size: 20px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  color: var(--faded);
+}
+
+.text-section p {
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--ink);
+  margin-bottom: 18px;
+}
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--rule);
+  padding: 24px 36px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer span {
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  color: var(--faded);
+}
+
+/* ── LIGHTBOX ── */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 24, 21, 0.94);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 40px;
+}
+
+.lightbox.open { display: flex; }
+
+.lightbox img {
+  max-width: 90vw;
+  max-height: 80vh;
+  object-fit: contain;
+  display: block;
+}
+
+.lightbox-caption {
+  margin-top: 18px;
+  font-size: 15px;
+  color: #c8c3bb;
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 22px;
+  right: 30px;
+  font-family: 'SpecialElite', monospace;
+  font-size: 16px;
+  letter-spacing: 0.15em;
+  color: #c8c3bb;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 700px) {
+  nav { padding: 18px 20px; }
+  .grid { grid-template-columns: 1fr 1fr; }
+  .hero-caption { left: 20px; }
+  .section-label { padding: 40px 20px 14px; }
+  .text-section { padding: 52px 20px 60px; }
+  footer { padding: 20px; flex-direction: column; gap: 8px; }
+}
+
+@media (max-width: 460px) {
+  .grid { grid-template-columns: 1fr; }
+  nav ul { gap: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grid-item img { transition: none; }
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 22px 36px;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+}
+
+nav .site-title {
+  font-size: 32px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  margin-bottom: 12px;
+}
+
+.nav-row {
+  list-style: none;
+  display: flex;
+  padding: 0;
+}
+
+.nav-top {
+  gap: 32px;
+}
+
+.nav-bottom {
+  margin-top: 8px;
+}
+
+#about,
+#appraisal,
+#contact {
+  scroll-margin-top: 140px;
+}
+
+h2, .section-label {
+  scroll-margin-top: 140px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+#contact {
+  text-align: center;
+}
+
+#about {
+  text-align: center;
+}
+
+#appraisal {
+  text-align: center;
+}
+
+.email-box {
+  background: #6c6c6c;
+  border: 3px solid #ff0000;
+  border-radius: 6px;
+  padding: 30px;
+  max-width: 700px;
+  margin: 0 auto;
+  box-shadow: 8px 8px 0 rgba(0,0,0,0.3);
+
+  font-family: "Courier New", monospace;
+  color: #000000;
+  position: relative;
+}
+
+.email-header {
+  background: #595959;
+  border-bottom: 2px solid #ff0000;
+  padding: 8px 12px;
+  margin: -30px -30px 20px -30px;
+  font-weight: bold;
+}
+
+.email-box a {
+  color: #000000;
+  text-decoration: underline;
+}
+
+.typewriter-container {
+  margin-top: 25px;
+  min-height: 40px;
+}
+
+.typewriter {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid #000000;
+  animation:
+    typing 4s steps(25, end) infinite,
+    blink 0.8s step-end infinite;
+}
+
+@keyframes typing {
+  0% {
+    width: 0;
+  }
+  60% {
+    width: 19ch;
+  }
+  100% {
+    width: 19ch;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+.email-box {
+  background-image:
+    repeating-linear-gradient(
+      transparent,
+      transparent 29px,
+      rgba(0,0,0,0.04) 30px
+    );
+}
+
+#contact {
+  color: black;
+}
+
+#contact p,
+#contact h2,
+#contact a {
+  color: black;
+}
+
+/* ── EVENTS PAGE ── */
+
+.events-header {
+  margin-top: 140px;
+  height: 260px;
+
+  background-image: url("images/5streetsquat.jpg");
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  position: relative;
+}
+
+.events-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+}
+
+.events-header h1,
+.events-header p {
+  position: relative;
+  z-index: 1;
+  color: white;
+}
+
+.events-header h1 {
+  font-size: 34px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+.events-list {
+  max-width: 1000px;
+  margin: 80px auto;
+  padding: 0 30px;
+}
+
+.events-entry {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 40px;
+
+  padding: 40px 0;
+  border-bottom: 1px solid #222;
+}
+
+.events-year {
+  font-size: 32px;
+  color: var(--faded);
+  letter-spacing: .15em;
+}
+
+.events-content h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.events-meta {
+  color: #ffffff;
+  margin-bottom: 18px;
+  letter-spacing: .08em;
+}
+
+.events-content p {
+  margin-bottom: 12px;
+}
+
+.events-links {
+  margin-top: 18px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.events-links a {
+  color: var(--faded);
+  text-decoration: none;
+  border-bottom: 1px solid var(--faded);
+  padding-bottom: 2px;
+}
+
+.events-links a:hover {
+  color: white;
+}
+
+@media (max-width: 700px) {
+
+  .events-entry {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .events-year {
+    font-size: 24px;
+  }
+
+  .events-header h1 {
+    font-size: 26px;
+  }
+}
+
+/* ── EVENTS PAGE ── */
+
+.events-section-title {
+  max-width: 1000px;
+  margin: 80px auto 20px;
+  padding: 0 30px;
+
+  font-size: 24px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+
+  color: var(--faded);
+}
+
+.events-list {
+  max-width: 1000px;
+  margin: 0 auto 80px;
+  padding: 0 30px;
+}
+
+.event-entry {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 40px;
+
+  padding: 40px 0;
+  border-bottom: 1px solid #222;
+}
+
+.event-flyer {
+  position: relative;
+}
+
+.event-flyer img {
+  width: 100%;
+  display: block;
+
+  border: 1px solid #222;
+
+  transform: rotate(-1.5deg);
+}
+
+/* tape */
+
+.event-flyer::before,
+.event-flyer::after {
+  content: "";
+
+  position: absolute;
+  top: -8px;
+
+  width: 70px;
+  height: 18px;
+
+  background: rgba(255,255,255,.15);
+
+  z-index: 10;
+}
+
+.event-flyer::before {
+  left: 15px;
+  transform: rotate(-25deg);
+}
+
+.event-flyer::after {
+  right: 15px;
+  transform: rotate(25deg);
+}
+
+.event-content h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.event-meta {
+  color: white;
+  margin-bottom: 18px;
+  letter-spacing: .08em;
+}
+
+.event-content p {
+  margin-bottom: 12px;
+}
+
+/* ── ZINE BUTTON ── */
+#floating-zine {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+
+  width: 150px;
+  height: 150px;
+  z-index: 9999;
+
+  display: none;
+  cursor: pointer;
+
+  animation: floatPulse 3s ease-in-out infinite;
+}
+
+#floating-zine img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid #ffffff;
+}
+
+@keyframes floatPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+/* ── CONFERENCES PAGE ── */
+
+.conference-header {
+  margin-top: 140px;
+  height: 260px;
+
+  background-image: url("images/40.jpeg");
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  position: relative;
+}
+
+.conference-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+}
+
+.conference-header h1,
+.conference-header p {
+  position: relative;
+  z-index: 1;
+  color: white;
+}
+
+.conference-header h1 {
+  font-size: 34px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+.conference-list {
+  max-width: 1000px;
+  margin: 80px auto;
+  padding: 0 30px;
+}
+
+.conference-entry {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 40px;
+
+  padding: 40px 0;
+  border-bottom: 1px solid #222;
+}
+
+.conference-year {
+  font-size: 32px;
+  color: var(--faded);
+  letter-spacing: .15em;
+}
+
+.conference-content h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.conference-meta {
+  color: #ffffff;
+  margin-bottom: 18px;
+  letter-spacing: .08em;
+}
+
+.conference-content p {
+  margin-bottom: 12px;
+}
+
+.conference-links {
+  margin-top: 18px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.conference-links a {
+  color: var(--faded);
+  text-decoration: none;
+  border-bottom: 1px solid var(--faded);
+  padding-bottom: 2px;
+}
+
+.conference-links a:hover {
+  color: white;
+}
+
+@media (max-width: 700px) {
+
+  .conference-entry {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .conference-year {
+    font-size: 24px;
+  }
+
+  .conference-header h1 {
+    font-size: 26px;
+  }
+}
+
+/* ── ORAL HISTORY HEADER ── */
+
+.oral-history-header {
+  margin-top: 140px;
+  height: 260px;
+
+  background-image: url("images/Jerryleaflets126.jpeg");
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  position: relative;
+}
+
+.oral-history-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+}
+
+.oral-history-header h1,
+.oral-history-header p {
+  position: relative;
+  z-index: 1;
+  color: white;
+}
+
+.oral-history-header h1 {
+  font-size: 34px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+/* ── DON'T BE STUPID PAGE ── */
+
+.full-image-page {
+  margin-top: 180px; /* adjust to clear your fixed nav */
+  width: 100%;
+}
+
+.full-image-page img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ── ZINE PAGE HEADER (FIXED) ── */
+
+.zines-header {
+  margin-top: 180px;
+  height: 260px;
+
+  background-image: url("images/Graffiti.04.84.B2.JPG");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  text-align: center;
+  position: relative;
+}
+
+.zines-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+}
+
+.zines-header h1,
+.zines-header p {
+  position: relative;
+  z-index: 1;
+  color: white;
+}
+
+.zines-header h1 {
+  font-size: 34px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* ── ZINE LAYOUT ── */
+
+.zine-library {
+  width: 100%;
+  max-width: 1400px;
+  margin: 60px auto 80px;
+  padding: 0 20px;
+}
+
+.zine-entry {
+  margin-bottom: 100px;
+  text-align: center;
+}
+
+.zine-entry h2 {
+  margin-bottom: 30px;
+  color: var(--faded);
+  font-size: 20px;
+  letter-spacing: .1em;
+}
+
+/* Flipbook sizing */
+.flipbook-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  aspect-ratio: 16 / 10;
+  border: 1px solid #222;
+}
+
+.flipbook-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* ── COMING SOON PAGE ── */
+
+.coming-soon {
+  min-height: calc(100vh - 220px);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  padding: 200px 20px 80px;
+}
+
+.coming-soon h1 {
+  font-size: 64px;
+  letter-spacing: .25em;
+  color: var(--faded);
+
+  margin-bottom: 30px;
+}
+
+.coming-soon p {
+  max-width: 700px;
+
+  font-size: 18px;
+  line-height: 1.8;
+
+  margin-bottom: 20px;
+}
+
+.coming-soon-divider {
+  width: 300px;
+  height: 1px;
+
+  background: var(--faded);
+
+  margin: 40px 0;
+}
+
+.coming-soon-small {
+  color: #fffdfd;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 700px) {
+
+  .coming-soon h1 {
+    font-size: 36px;
+  }
+
+  .coming-soon p {
+    font-size: 16px;
+  }
+
+}
+
+/* ── VHS ARCHIVE VIDEO SECTION KEEP AT BOTTOM ── */
+
+.vhs-section {
+  width: 100%;
+  padding: 80px 0;
+  display: flex;
+  justify-content: center;
+}
+
+/* ── VHS FRAME (4:3 FIT) ── */
+
+.vhs-frame {
+  position: relative;
+  width: 70%;
+  max-width: 700px;
+
+  /* THIS is the key fix */
+  aspect-ratio: 4 / 3;
+
+  background: black;
+  overflow: hidden;
+
+  border: 1px solid #222;
+}
+
+/* VIDEO FILLS FRAME PERFECTLY */
+.vhs-video {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  filter: grayscale(25%) contrast(1.1);
+
+  animation: glitchFlicker 15s infinite;
+}
+
+/* ── SCANLINES ── */
+.scanlines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.04),
+    rgba(255,255,255,0.04) 1px,
+    transparent 2px,
+    transparent 4px
+  );
+
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+}
+
+/* ── VHS NOISE ── */
+.vhs-noise {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background: url("https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif");
+  background-size: cover;
+
+  opacity: 0.04;
+  mix-blend-mode: screen;
+}
+
+/* ── GLITCH FLICKER ── */
+@keyframes glitchFlicker {
+  0%, 92%, 100% {
+    transform: none;
+    filter: grayscale(25%) contrast(1.1);
+  }
+
+  93% {
+    transform: translateX(-2px);
+    filter: hue-rotate(15deg) contrast(1.4);
+  }
+
+  94% {
+    transform: translateX(2px);
+    filter: hue-rotate(-15deg) contrast(1.6);
+  }
+
+  95% {
+    transform: translateX(0);
+  }
+}
